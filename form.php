@@ -6,6 +6,17 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $dataIsGood = false;
+$email = '';
+$firstName = '';
+$lastName = '';
+$genderRad = '';
+// $chkCoal = '';
+// $chkHydro = '';
+// $chkWind = ''; 
+// $chkSolar = '';
+// $chkNuclear = '';
+$artistsLst = '';
+$comments = '';
 
 
 function getData($field){
@@ -35,6 +46,18 @@ return $data;
             $email = getData("txtEmail");
             $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
+            $gender = getData("fldGenderRad");
+
+            // $chkCoal = getData("chkCoal");
+            // $chkHydro = getData("chkHydro");
+            // $chkWind = getData("chkWind");
+            // $chkSoal = getData("chkSoal");
+            // $chkNuclear = getData("chkNuclear");
+            
+            $artistLst = getData('fldArtistLst');
+            
+            $comments = getData('fldComments');
+
             if($firstName == ""){
                 print '<p class = "mistake"> Please enter your first name.</p>';
                 $dataIsGood = false;
@@ -49,13 +72,21 @@ return $data;
                 print '<p class="mistake">Please enter your email address.</p>';
                 $dataIsGood = false;
             }
-            
+            elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                print '<p class="mistake">Your email address appears to be incorrect.</p>';
+                $dataIsGood = false;
+            }
+
+            if($genderRad == ""){
+                print '<p class = "mistake"> Please indicate your gender preference</p>';
+                $dataIsGood = false;
+            }
 
             if($dataIsGood){
                 try{
-                    $sql = 'INSERT INTO tbl (fld) VALUES (?)';
+                    $sql = 'INSERT INTO tblArtInquiry (fldEmail, fldFirstName, fldLastName, fldGender, fldArtistLst, fldComments) VALUES (?, ?, ?, ?, ?, ?)';
                     $statement = $pdo->prepare($sql);
-                    $params = array($firstName, $lastName, $email);
+                    $params = array($email, $firstName, $lastName, $genderRad, $artistsLst, $comments);
 
                     // foreach ($params as $param){
                     //     $pos = strpos($sql, '?');
@@ -84,9 +115,8 @@ return $data;
         }
         ?>
 
-
         <form action="<?php print $phpSelf;?>" 
-                id = "frmRegister"
+                id = "frmArtInquiry"
                 method="post">
 <!-- text boxes: 2-4-->
             <fieldset class = "contact">
@@ -106,18 +136,18 @@ return $data;
             </fieldset>
 <!-- radio buttons: 3-5 -->
             <fieldset class = "radio">
-                <legend>Do You Support Sustainable Energy?</legend>
+                <legend>What is your prefered gender?</legend>
                 <p>
-                    <label for="radYes">Yes</label>
-                    <input type="radio" value = "Yes" name = "fldSupportRad" id = "radYes" required>
+                    <label for="radYes">Male</label>
+                    <input type="radio" value = "Male" name = "fldGender" id = "radMale" required>
                 </p>
                 <p>
-                    <label for="radNo">No</label>
-                    <input type="radio" value = "No" name = "fldSupportRad" id = "radNo" required>
+                    <label for="radNo">Female</label>
+                    <input type="radio" value = "Female" name = "fldGender" id = "radFemale" required>
                 </p>
                 <p>
-                    <label for="radPrefer">Prefer not to say</label>
-                    <input type="radio" value = "Prefer" name = "fldSupportRad" id = "radPrefer" required>
+                    <label for="radPrefer">Other</label>
+                    <input type="radio" value = "Other" name = "fldGender" id = "radOther" required>
                 </p>
             </fieldset>
 <!-- checkboxes: 3-5-->
@@ -146,19 +176,19 @@ return $data;
             </fieldset>
 <!-- select list: 1+ 3-5 options -->
             <fieldset class = "list">
-                <legend>What is the method of sustainable energy do you believe holds the most potential?</legend>
+                <legend>What art piece are you interested in?</legend>
                 <p>
-                    <select name = "lstSustainableEnergy" id = "fldSustainableLst">
-                        <option value="lstHydro">Hydro</option>
-                        <option value="lstWind">Wind</option>
-                        <option value="lstSolar">Solar</option>
-                        <option value="lstNuclear">Nuclear</option>
+                    <select name = "lstArtists" id = "fldArtistsLst">
+                        <option value="lstUntitled">Untitled (heart)</option>
+                        <option value="lstMonet">Water Lilies</option>
+                        <option value="lstBroadway">Broadway Boogie Woogie</option>
+                        <option value="lstNighthawk">Nighthawk</option>
                     </select>
                 </p>
             </fieldset>
 <!-- text area: 1+ -->
             <fieldset class = "text">
-                <legend>If you did not check Nuclear Energy, please explain why:</legend>
+                <legend>Is there anything else you would like us to know about your inquiry?</legend>
                 <p>
                     <textarea name = "fldComments" id = "fldComments"></textarea>
                 </p>
