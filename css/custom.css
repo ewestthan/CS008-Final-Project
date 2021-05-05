@@ -24,5 +24,8 @@ p {
 }
 .grid-container {
     display: grid;
-    grid-template-areas: 'text image';
+    grid-template-areas: 
+    'text image'
+    'text image'
+    'text .';
 }
