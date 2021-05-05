@@ -7,9 +7,9 @@ $path_parts = pathinfo($phpSelf);
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Sustainable VS Unsustainable Forms of Energy</title>
-        <meta name="author" content="Ethan West">
-        <meta name="description" content="All about sustainable forms of energy, info, comparisons, diagrams, and more.">
+        <title>Artem Galleries</title>
+        <meta name="author" content="Ethan West, Wyatt Taylor">
+        <meta name="description" content="The website for Artem Galleries, an art gallery and seller.">
         <link rel="stylesheet" href="css/custom.css?version=<?php print time(); ?>" type="text/css">
         <link rel="stylesheet" media = "(max-width: 800px)" href="css/custom-tablet.css?version=<?php print time(); ?>" type="text/css">
         <link rel="stylesheet" media = "(max-width: 600px)" href="css/custom-phone.css?version=<?php print time(); ?>" type="text/css">
