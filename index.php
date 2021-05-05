@@ -1,12 +1,12 @@
 <?php include 'top.php';?>
 <main class="grid-container">
-        <h1 class="textGrid">Welcome!</h1>
-        <section>
-                <p class="textGrid">Welcome to the home page for Artem Galleries. Our gallery serves as a place for people to view and learn about art, and a place where pieces can be bought. We directly support and work alongside artists in all that we do, and help them make sure that each piece is to the highest quality.</p>
+        <section class="textGrid">
+        <h1>Welcome!</h1>
+                <p>Welcome to the home page for Artem Galleries. Our gallery serves as a place for people to view and learn about art, and a place where pieces can be bought. We directly support and work alongside artists in all that we do, and help them make sure that each piece is to the highest quality.</p>
         </section>
-        <section>
-                <h2 class="textGrid">Info</h2>
-                <p class="textGrid"> On this site, you can find more information about our staff, some examples of artwork we have currently available, and a form regarding sales. Please note that this site does not depict our full gallery, only a sample of what we have replicas of or certain other works.</p>
+        <section class="textGridTwo">
+                <h2>Info</h2>
+                <p> On this site, you can find more information about our staff, some examples of artwork we have currently available, and a form regarding sales. Please note that this site does not depict our full gallery, only a sample of what we have replicas of or certain other works.</p>
         </section>
         <aside class="imgGrid">
                         <figure>

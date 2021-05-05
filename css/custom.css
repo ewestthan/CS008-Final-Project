@@ -19,15 +19,17 @@ p {
 .textGrid {
     grid-area: text;
 }
+.textGridTwo {
+    grid-area: text-two;
+}
 .imgGrid {
     grid-area: image;
 }
 .grid-container {
     display: grid;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas: 
     'text image'
-    'text image'
-    'text .'
-    'text .';
+    'text-two image';
     align-content: space-evenly;
 }
