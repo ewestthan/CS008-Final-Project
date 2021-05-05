@@ -27,6 +27,7 @@ p {
     grid-template-areas: 
     'text image'
     'text image'
+    'text .'
     'text .';
     align-content: space-evenly;
 }
