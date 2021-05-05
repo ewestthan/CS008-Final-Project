@@ -16,9 +16,13 @@ p {
 .activePage {
     font-weight: bold;
 }
-.flex-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: left;
+.textGrid {
+    grid-area: text;
+}
+.imgGrid {
+    grid-area: image;
+}
+.grid-container {
+    display: grid;
+    grid-template-areas: 'text image';
 }

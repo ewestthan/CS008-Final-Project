@@ -1,13 +1,13 @@
 <?php include 'top.php';?>
-<main>
-        <h1>Welcome!</h1>
-        <section>
+<main class="grid-container">
+        <h1 class="textGrid">Welcome!</h1>
+        <section class="textGrid">
                 <p>Welcome to the home page for Artem Galleries. Our gallery serves as a place for people to view and learn about art, and a place where pieces can be bought. We directly support and work alongside artists in all that we do, and help them make sure that each piece is to the highest quality.</p>
         </section>
-        <section>
+        <section class="textGrid">
                 <h2>Info</h2>
                 <p> On this site, you can find more information about our staff, some examples of artwork we have currently available, and a form regarding sales. Please note that this site does not depict our full gallery, only a sample of what we have replicas of or certain other works.</p>
-                <aside class = "flex-container">
+                <aside class="imgGrid">
                         <figure>
                                 <img alt="fleming" src="images/fleming.jpeg">
                                 <figcaption><cite><a href = "https://www.sevendaysvt.com/vermont/top-7-art-galleries-in-burlington/Content?oid=3604788" target = "_blank" >Fleming Museum at the University of Vermont</a></cite></figcaption>
