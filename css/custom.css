@@ -8,4 +8,9 @@ h1, h2{
 }
 nav {
     flex: 0 1 5%;
+    font-size: larger;
+    font-family:Arial, Helvetica, sans-serif
+}
+p {
+    font-family:Arial, Helvetica, sans-serif
 }
