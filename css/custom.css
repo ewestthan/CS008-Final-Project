@@ -7,8 +7,12 @@ h1, h2{
     font-variant: small-caps;
 }
 nav {
-    flex: 0 1 5%
+    flex: 0 1 5%;
+    font-size: larger;
 }
 p {
     font-family:Arial, Helvetica, sans-serif
+}
+.activePage {
+    font-weight: bold;
 }
