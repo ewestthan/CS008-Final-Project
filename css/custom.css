@@ -1,0 +1,11 @@
+
+html{
+    background-color: bisque;
+}
+h1, h2{
+    font-family: 'Courier New', Courier, monospace;
+    font-variant: small-caps;
+}
+nav {
+    flex: 0 1 5%;
+}
