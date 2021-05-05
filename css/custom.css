@@ -16,3 +16,7 @@ p {
 .activePage {
     font-weight: bold;
 }
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
