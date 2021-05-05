@@ -10,11 +10,11 @@ $email = '';
 $firstName = '';
 $lastName = '';
 $genderRad = '';
-// $chkCoal = '';
-// $chkHydro = '';
-// $chkWind = ''; 
-// $chkSolar = '';
-// $chkNuclear = '';
+$chkAbstract = '';
+$chkSurrealism = '';
+$chkRealism = ''; 
+$chkCubism = '';
+$chkDadaism = '';
 $artistsLst = '';
 $comments = '';
 
@@ -34,10 +34,6 @@ return $data;
 <main>
     <article>
         <?php
-        print '<p>Post Array:</p><pre>';
-        print_r($_POST);
-        print '</pre>';
-
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $dataIsGood = true;
             
@@ -46,17 +42,18 @@ return $data;
             $email = getData("txtEmail");
             $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-            $gender = getData("fldGenderRad");
+            $genderRad = getData("fldGender");
 
-            // $chkCoal = getData("chkCoal");
-            // $chkHydro = getData("chkHydro");
-            // $chkWind = getData("chkWind");
-            // $chkSoal = getData("chkSoal");
-            // $chkNuclear = getData("chkNuclear");
+            $chkAbstract = getData("fldAbstract");
+            $chkSurrealism = getData("fldSurrealism");
+            $chkRealism = getData("fldRealism");
+            $chkCubism = getData("fldCubism");
+            $chkDadaism = getData("fldDadaism");
             
             $artistLst = getData('fldArtistLst');
             
             $comments = getData('fldComments');
+            $comments = filter_var($comments, FILTER_SANITIZE_STRING);
 
             if($firstName == ""){
                 print '<p class = "mistake"> Please enter your first name.</p>';
@@ -81,28 +78,20 @@ return $data;
                 print '<p class = "mistake"> Please indicate your gender preference</p>';
                 $dataIsGood = false;
             }
+            if($chkAbstract == '' && $chkSurrealism == '' && $chkRealism == '' && $chkCubism == '' && $chkDadaism == ''){
+                print '<p class = "mistake"> Please indicate an interest</p>';
+                $dataIsGood = false;
+            }
+            if($comments == ""){
+                print '<p class = "mistake"> Please enter a comment</p>';
+                $dataIsGood = false;
+            }
 
             if($dataIsGood){
                 try{
-                    $sql = 'INSERT INTO tblArtInquiry (fldEmail, fldFirstName, fldLastName, fldGender, fldArtistLst, fldComments) VALUES (?, ?, ?, ?, ?, ?)';
+                    $sql = 'INSERT INTO tblArtInquiry (fldEmail, fldFirstName, fldLastName, fldGender, fldAbstract, fldSurrealism, fldRealism, fldCubism, fldDadaism, fldArtistLst, fldComments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
                     $statement = $pdo->prepare($sql);
-                    $params = array($email, $firstName, $lastName, $genderRad, $artistsLst, $comments);
-
-                    // foreach ($params as $param){
-                    //     $pos = strpos($sql, '?');
-                    //     if($pos !== false){
-                    //         $sql = substr_replace($sql, '"' . $param . '"', $pos, strlen('?'));
-                    //     }
-                    // }
-                    // print '<p>' . $sql. '</p>';
-
-
-                    if($statement->execute($params)){
-                        print '<p>Record was successfuly saved.</p>';
-                    }
-                    else{
-                        print '<p>Record was NOT successfully saved.</p>';
-                    }
+                    $params = array($email, $firstName, $lastName, $genderRad, $chkAbstract, $chkSurrealism, $chkRealism, $chkCubism, $chkDadaism, $artistsLst, $comments);
                 }
                 catch(PDOException $e){
                     print '<p>Couldn\'t insert the record, please contact someone.</p>';
@@ -152,26 +141,26 @@ return $data;
             </fieldset>
 <!-- checkboxes: 3-5-->
             <fieldset class = "checkbox">
-                <legend>Check all that you support</legend>
+                <legend>Indicate what styles of art you are most fascinated by:</legend>
                 <p>
-                    <label for="chkCoal">Coal</label>
-                    <input type="checkbox" name = "chkCoal" id = "chkCoal" value = '1'>
+                    <label for="fldAbstract">Abstract</label>
+                    <input type="checkbox" name = "fldAbstract" id = "fldAbstract" value = '1'>
                 </p>
                 <p>
-                    <label for="chkHydro">Hydro</label>
-                    <input type="checkbox" name = "chkHydro" id = "chkHydro" value = '1'>
+                    <label for="fldSurrealism">Surrealism</label>
+                    <input type="checkbox" name = "fldSurrealism" id = "fldSurrealism" value = '1'>
                 </p>
                 <p>
-                    <label for="chkWind">Wind</label>
-                    <input type="checkbox" name = "chkWind" id = "chkWind" value = '1'>
+                    <label for="fldRealism">Realism</label>
+                    <input type="checkbox" name = "fldRealism" id = "fldRealism" value = '1'>
                 </p>
                 <p>
-                    <label for="chkSolar">Solar</label>
-                    <input type="checkbox" name = "chkSolar" id = "chkSolar" value = '1'>
+                    <label for="fldCubism">Cubism</label>
+                    <input type="checkbox" name = "fldCubism" id = "fldCubism" value = '1'>
                 </p>
                 <p>
-                    <label for="chkNuclear">Nuclear</label>
-                    <input type="checkbox" name = "chkNuclear" id = "chkNuclear" value = '1'>
+                    <label for="fldDadaism">Dadaism</label>
+                    <input type="checkbox" name = "fldDadaism" id = "fldDadaism" value = '1'>
                 </p>
             </fieldset>
 <!-- select list: 1+ 3-5 options -->
