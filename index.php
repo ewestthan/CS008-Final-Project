@@ -1,7 +1,7 @@
 <?php include 'top.php';?>
 <main class="grid-container">
         <section class="textGrid">
-        <h1>Welcome!</h1>
+        <h2>Welcome!</h2>
                 <p>Welcome to the home page for Artem Galleries. Our gallery serves as a place for people to view and learn about art, and a place where pieces can be bought. We directly support and work alongside artists in all that we do, and help them make sure that each piece is to the highest quality.</p>
         </section>
         <section class="textGridTwo">

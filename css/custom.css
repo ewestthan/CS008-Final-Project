@@ -2,16 +2,43 @@
 html{
     background-color: bisque;
 }
+h1 {
+    color: coral;
+}
 h1, h2{
     font-family: 'Courier New', Courier, monospace;
     font-variant: small-caps;
 }
 nav {
-    flex: 0 1 5%;
     font-size: larger;
+    background-color: coral;
+    overflow: hidden;
+}
+legend {
+    background-color: cornsilk;
+    color: coral;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+nav a {
+    float: left;
+    display: block;
+    color: cornsilk;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
 }
 p {
     font-family:Arial, Helvetica, sans-serif
+}
+img {
+    max-width: 100%;
+    border: 5px solid coral;
+}
+fieldset {
+    background-color: cornsilk;
+    overflow: hidden;
 }
 .activePage {
     font-weight: bold;
@@ -32,4 +59,14 @@ p {
     'text image'
     'text-two image';
     align-content: space-evenly;
+}
+.haring,.monet,.mondrian,.hopper {
+    float: left;
+}
+.img-container {
+    width: 25%;
+    padding: 5px;
+}
+.small {
+      width: 25%;
 }

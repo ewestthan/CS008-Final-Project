@@ -209,7 +209,6 @@ return $data;
             </fieldset>
 <!-- submit button -->
             <fieldset class = "submit">
-                <legend></legend>
                 <p>
                     <input type="submit" name = "btnSubmit">
                 </p>

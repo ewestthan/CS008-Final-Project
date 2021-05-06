@@ -1,0 +1,9 @@
+nav, header {
+    position: relative;
+}
+.haring,.monet,.mondrian,.hopper {
+    max-width: 1000%;
+}
+.small {
+    width: 50%;
+}
