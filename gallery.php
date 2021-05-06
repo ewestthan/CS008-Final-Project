@@ -2,6 +2,31 @@
 <main>
         <h2>Sample Works</h2>
         <p>Below are four sample works from our current collection, comprising a wide range of artists, from the abstract works of Piet Mondrian to the realistic works of Claude Monet. Artem Galleries prides itself on this range, as it allows for all who visit to find a piece they enjoy observing.</p>
+        <table>
+                <caption>Our Available Art Pieces</caption>
+                <tr>
+                        <th>Piece</th>
+                        <th>Creator</th>
+                        <th>Cost (in millions)</th>
+                </tr>
+        
+                <?php
+                $sql = 'SELECT fldPiece, fldCreator, fldCost FROM tblPieces';
+
+                $statement = $pdo->prepare($sql);
+                $statement->execute();
+
+                $records = $statement->fetchAll();
+
+                foreach($records as $record){
+                        print '<tr>';
+                        print '<td>' . $record['fldPiece'] . '</td>';
+                        print '<td>' . $record['fldCreator'] . '</td>';
+                        print '<td>' . $record['fldCost'] . '</td>';
+                        print '</tr>' . PHP_EOL;
+                }   
+                ?>
+        </table>
         <figure>
                 <img alt="haring" src="images/haring.jpeg">
                 <figcaption><cite><a href = "https://img.kingandmcgaw.com/imagecache/4/3/bmwcm-5.0_fid-880229_fwcm-1.6_ihcm-50.0_iwcm-50.0_lmwcm-5.0_maxdim-1000_mc-ffffff_rmwcm-5.0_si-435786.jpg_tmwcm-5.0.jpg" target = "_blank" >Untitled by Keith Haring</a></cite></figcaption>

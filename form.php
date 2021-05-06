@@ -92,6 +92,31 @@ return $data;
                     $sql = 'INSERT INTO tblArtInquiry (fldEmail, fldFirstName, fldLastName, fldGender, fldAbstract, fldSurrealism, fldRealism, fldCubism, fldDadaism, fldArtistLst, fldComments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
                     $statement = $pdo->prepare($sql);
                     $params = array($email, $firstName, $lastName, $genderRad, $chkAbstract, $chkSurrealism, $chkRealism, $chkCubism, $chkDadaism, $artistsLst, $comments);
+                    
+                    if($statement->execute($params)){
+                        print '<p>Record was successfuly saved.</p>';
+
+                        $to = $email;
+                        $from = 'Art dealers <ewest3@uvm.edu>';
+                        $subject = 'Regarding your art inquiry';
+
+                        $mailMessage = 'Thank you for inquiring about our art selection, we are currently out of stock. You will be notified when the piece you have chose is back in stock.';
+                        $mailMessage .= ' -Your local art dealer';
+                
+                        $headers = "MIME-Version 1.0\r\n";
+                        $headers .= "Content-type: text/html; charset=utf-8\r\n";
+                        $headers .= "From: " . $from . "\r\n";
+
+                        $mailSent = mail($to, $subject, $mailMessage, $headers);
+
+                        if($mailSent){
+                            print '<p>An email has been sent to you containing further information about your art inquiry.</p>';
+                            print $mailMessage;
+                        }
+                    }
+                    else{
+                        print '<p>Record was NOT successfully saved.</p>';
+                    }
                 }
                 catch(PDOException $e){
                     print '<p>Couldn\'t insert the record, please contact someone.</p>';
@@ -128,15 +153,15 @@ return $data;
                 <legend>What is your prefered gender?</legend>
                 <p>
                     <label for="radYes">Male</label>
-                    <input type="radio" value = "Male" name = "fldGender" id = "radMale" required>
+                    <input type="radio" <?php if($gender = 'Male') print 'checked'; ?> value = "Male" name = "fldGender" id = "radMale" required>
                 </p>
                 <p>
                     <label for="radNo">Female</label>
-                    <input type="radio" value = "Female" name = "fldGender" id = "radFemale" required>
+                    <input type="radio" <?php if($gender = 'Female') print 'checked'; ?>value = "Female" name = "fldGender" id = "radFemale" required>
                 </p>
                 <p>
                     <label for="radPrefer">Other</label>
-                    <input type="radio" value = "Other" name = "fldGender" id = "radOther" required>
+                    <input type="radio" <?php if($gender = 'Other') print 'checked'; ?> value = "Other" name = "fldGender" id = "radOther" required>
                 </p>
             </fieldset>
 <!-- checkboxes: 3-5-->
@@ -179,7 +204,7 @@ return $data;
             <fieldset class = "text">
                 <legend>Is there anything else you would like us to know about your inquiry?</legend>
                 <p>
-                    <textarea name = "fldComments" id = "fldComments"></textarea>
+                    <textarea name = "fldComments" id = "fldComments" <?php if($gender != '') print $comments; ?>> </textarea>
                 </p>
             </fieldset>
 <!-- submit button -->
